@@ -25,3 +25,13 @@ const endCameraStream = () => {
 
     video.srcObject = null;
 }
+
+/* TF.js */
+
+var model;
+const initModel = () =>{
+    model = await faceLandmarksDetection.load(
+        faceLandmarksDetection.SupportedPackages.mediapipeFacemesh
+    );
+}
+initModel();
