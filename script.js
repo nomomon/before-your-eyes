@@ -11,6 +11,8 @@ const startCameraStream = () => {
             });
     }
 }
+startCameraStream();
+
 
 const endCameraStream = () => {
     let video = document.querySelector("#video")
@@ -29,7 +31,7 @@ const endCameraStream = () => {
 /* TF.js */
 
 var model;
-const initModel = () => {
+const initModel = async () => {
     model = await faceLandmarksDetection.load(
         faceLandmarksDetection.SupportedPackages.mediapipeFacemesh
     );
