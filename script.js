@@ -110,14 +110,16 @@ const blinked = () => {
 
 const init = async () => {
 
-    let previousEyeState = false;
+    var previousEyeState = false;
 
     while(true){
         let facialLandmarks = await model.estimateFaces({
             input: document.querySelector("#video")
         });
 
-        let currentEyeState = eyeClosed(facialLandmarks[0].mesh);
+        if(facialLandmarks.length > 0){
+            var currentEyeState = eyeClosed(facialLandmarks[0].mesh);
+        }
 
         if(currentEyeState && !previousEyeState){
             blinked();
