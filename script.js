@@ -28,7 +28,7 @@ const endCameraStream = () => {
     video.srcObject = null;
 }
 
-/* TF.js */
+/* TF.js face landmarks model */
 
 var model;
 const initModel = async () => {
@@ -37,7 +37,6 @@ const initModel = async () => {
     );
 }
 initModel();
-
 
 /*
 
@@ -86,7 +85,7 @@ const eyeClosed = (keypoints) => {
     );
     earRight = aR / (2 * bR);
 
-    console.log("-----> " + earLeft + "\t" + earRight);
+    // console.log("-----> " + earLeft + "\t" + earRight);
 
     if (earLeft < 0.1 && earRight < 0.1) {
         return true;
@@ -98,3 +97,36 @@ const eyeClosed = (keypoints) => {
 const euclidean_dist = (x1, y1, x2, y2) => {
     return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 }
+
+/* let the show begin */
+
+let counter = 0;
+
+const blinked = () => {
+    counter ++;
+
+    document.querySelector("span").innerText = counter;
+}
+
+const init = async () => {
+
+    let previousEyeState = false;
+
+    while(true){
+        let facialLandmarks = await model.estimateFaces({
+            input: document.querySelector("#video")
+        });
+
+        let currentEyeState = eyeClosed(facialLandmarks[0].mesh);
+
+        if(currentEyeState && !previousEyeState){
+            blinked();
+        }
+
+        previousEyeState = currentEyeState;
+    
+        await (new Promise(resolve => setTimeout(resolve, 100)))
+    }
+}
+
+setTimeout(init, 5000)
