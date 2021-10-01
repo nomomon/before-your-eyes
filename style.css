@@ -1,0 +1,10 @@
+body{
+    padding:0;
+    margin:0;
+}
+
+video{
+    margin:auto;
+    width: 500px;
+    height: 500px;
+}
