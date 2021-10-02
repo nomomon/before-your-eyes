@@ -103,9 +103,17 @@ const euclidean_dist = (x1, y1, x2, y2) => {
 let counter = 0;
 
 const blinked = () => {
-    counter ++;
+    console.log("*blink*")
 
-    document.querySelector("span").innerText = counter;
+    counter = !counter;
+
+    if(counter){
+        document.querySelector("#img1").style.display = "none";
+        document.querySelector("#img2").style.display = "block";
+    }else{
+        document.querySelector("#img1").style.display = "block";
+        document.querySelector("#img2").style.display = "none";
+    }
 }
 
 const init = async () => {
@@ -127,7 +135,7 @@ const init = async () => {
 
         previousEyeState = currentEyeState;
     
-        await (new Promise(resolve => setTimeout(resolve, 100)))
+        await (new Promise(resolve => setTimeout(resolve, 10)))
     }
 }
 
