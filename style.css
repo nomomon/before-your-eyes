@@ -4,10 +4,26 @@ body{
 }
 
 video{
-    width: 500px;
-    height: 500px;
+    width:100vw;
 
-    display: none;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+
+#camera{
+    width: 200px;
+    height: 200px;
+
+    /* display: none; */
+
+    position: absolute;
+    top:75%;
+    left:15%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
 h1{

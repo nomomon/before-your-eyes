@@ -1,10 +1,10 @@
 const startCameraStream = () => {
-    let video = document.querySelector("#video")
+    let camera = document.querySelector("#camera")
 
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(function (stream) {
-                video.srcObject = stream;
+                camera.srcObject = stream;
             })
             .catch(function (err0r) {
                 console.log("Something went wrong!");
@@ -15,9 +15,9 @@ startCameraStream();
 
 
 const endCameraStream = () => {
-    let video = document.querySelector("#video")
+    let camera = document.querySelector("#camera")
 
-    let stream = video.srcObject;
+    let stream = camera.srcObject;
     let tracks = stream.getTracks();
 
     for (let i = 0; i < tracks.length; i++) {
@@ -25,7 +25,7 @@ const endCameraStream = () => {
         track.stop();
     }
 
-    video.srcObject = null;
+    camera.srcObject = null;
 }
 
 /* TF.js face landmarks model */
@@ -106,13 +106,12 @@ const blinked = () => {
     console.log("*blink*")
 
     counter = !counter;
+    vid = document.querySelector("#vid");
 
     if(counter){
-        document.querySelector("#img1").style.display = "none";
-        document.querySelector("#img2").style.display = "block";
+        vid.play();
     }else{
-        document.querySelector("#img1").style.display = "block";
-        document.querySelector("#img2").style.display = "none";
+        vid.pause();
     }
 }
 
@@ -122,21 +121,24 @@ const init = async () => {
 
     while(true){
         let facialLandmarks = await model.estimateFaces({
-            input: document.querySelector("#video")
+            input: document.querySelector("#camera")
         });
 
         if(facialLandmarks.length > 0){
             var currentEyeState = eyeClosed(facialLandmarks[0].mesh);
         }
 
-        if(currentEyeState && !previousEyeState){
+        if(currentEyeState != previousEyeState){
             blinked();
         }
 
         previousEyeState = currentEyeState;
     
-        await (new Promise(resolve => setTimeout(resolve, 10)))
+        // await (new Promise(resolve => setTimeout(resolve, 10)))
     }
 }
 
 setTimeout(init, 5000)
+
+
+
