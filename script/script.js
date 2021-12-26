@@ -1,6 +1,10 @@
+const teleportSound = new Audio("./assets/teleport.ogg");
+
 counter = 0;
 
 const blink = () =>{
+    teleportSound.play();
+
     viewer.dispose();
     (counter)? viewer.add(panorama1) : viewer.add(panorama2);
     counter = !counter;
