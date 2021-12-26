@@ -1,3 +1,7 @@
+const blink = () =>{
+    console.log("blink");
+};
+
 const init = async () => {
     var previousEyesOpen = false;
 
@@ -11,12 +15,12 @@ const init = async () => {
             var currentEyesOpen = eyesClosed(facialLandmarks[0].mesh);
 
             if(previousEyesOpen && !currentEyesOpen){
-                blinked();
+                blink();
             }    
-            
+
             previousEyesOpen = currentEyesOpen;
 
-            await wait(100);
+            await wait(10);
         }
     }
 }

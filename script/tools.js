@@ -10,7 +10,7 @@ const wait = (ms) => {
 
 const startCameraStream = (qs) => {
     qs = qs || "#camera";
-    let camera = document.querySelector();
+    let camera = document.querySelector(qs);
 
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({ video: true })
@@ -25,7 +25,7 @@ const startCameraStream = (qs) => {
 
 const endCameraStream = (qs) => {
     qs = qs || "#camera";
-    let camera = document.querySelector()
+    let camera = document.querySelector(qs);
     
     let stream = camera.srcObject;
     let tracks = stream.getTracks();
