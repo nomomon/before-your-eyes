@@ -37,3 +37,10 @@ img{
     top:0;
     left: 0;
 }
+
+.panolens-container{
+    display: none;
+}
+.panolens-container#selected{
+    display: block;
+}

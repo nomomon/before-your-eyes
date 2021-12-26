@@ -25,11 +25,24 @@
 
 <script>
 
-    const panorama1 = new PANOLENS.ImagePanorama('assets/dawn.jpeg');
-    const panorama2 = new PANOLENS.ImagePanorama('assets/field.jpeg');
-    const viewer = new PANOLENS.Viewer();
-    viewer.add( panorama1 );
-    
+    const images = [
+        'dawn.jpeg',
+        'field.jpeg',
+        'road.jpeg',
+        'sunset.jpeg',
+        'tent.jpeg',
+        'minecraft.jpeg',
+        'minecraft_2.jpeg'
+    ];
+
+    for(let image in images){
+        let panorama = new PANOLENS.ImagePanorama(`assets/${images[image]}`);
+        let viewer = new PANOLENS.Viewer();
+        viewer.add(panorama);
+    };
+
+    document.querySelector(".panolens-container").id = "selected";
+
 </script>
 
 <script src="script/blink.js"></script>

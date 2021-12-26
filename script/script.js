@@ -5,9 +5,12 @@ counter = 0;
 const blink = () =>{
     teleportSound.play();
 
-    viewer.dispose();
-    (counter)? viewer.add(panorama1) : viewer.add(panorama2);
-    counter = !counter;
+    document.querySelectorAll("#selected").forEach(el => el.setAttribute("id", ""));
+
+    let panoramas = [... document.querySelectorAll(".panolens-container")];
+
+    panoramas[Math.floor(panoramas.length * Math.random())].id = "selected";
+
 };
 
 const init = async () => {
