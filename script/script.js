@@ -1,5 +1,9 @@
+counter = 0;
+
 const blink = () =>{
-    console.log("blink");
+    viewer.dispose();
+    (counter)? viewer.add(panorama1) : viewer.add(panorama2);
+    counter = !counter;
 };
 
 const init = async () => {

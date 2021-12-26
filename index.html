@@ -20,8 +20,19 @@
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.6.0/dist/tf.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script>
 
+<script src="https://pchen66.github.io/js/three/three.min.js"></script>
+<script src="https://pchen66.github.io/js/panolens/panolens.min.js"></script>
+
+<script>
+
+    const panorama1 = new PANOLENS.ImagePanorama('assets/dawn.jpeg');
+    const panorama2 = new PANOLENS.ImagePanorama('assets/field.jpeg');
+    const viewer = new PANOLENS.Viewer();
+    viewer.add( panorama1 );
+    
+</script>
+
 <script src="script/blink.js"></script>
-<script src="script/maps.js"></script>
 <script src="script/tools.js"></script>
 
 <script src="script/script.js"></script>
